@@ -17,7 +17,7 @@ The project contains 3 main custom libraries to simplify the training process:
 1. `dataset.py`: A custom module made to create and split datasets given an input folder containing images of each class.
 2. `models.py`: This module provides different pre-trained CNN architectures to leverage the model as a **feature extractor**.
 3. `trainer.py`: As part of the modular architecture, this library is in charge of the entire training process, controlling the full workflow and hyperparameter definition (epochs, optimizer, criterion, etc).
-💡 `Note:` **Please refer to the Jupyter notebook (.ipynb file) for a detailed overview of the full workflow.**
+- 💡 `Note:` **Please refer to the Jupyter notebook (.ipynb file) for a detailed overview of the full workflow.**
 
 ---
 
