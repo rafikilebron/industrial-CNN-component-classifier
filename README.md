@@ -1,30 +1,46 @@
-# 🚀 Custom CNN Image Classifier Pipeline with PyTorch
+# 🚀 Industrial CNN Classifier
 
-Clasificador de imágenes modular y escalable construido sobre **PyTorch** y **Torchvision**. Este proyecto implementa una arquitectura limpia basada en el principio de responsabilidad única, separando el modelo, el motor de entrenamiento (`Trainer`) y el pipeline de datos para facilitar la experimentación con diferentes arquitecturas (ej. ResNet18) y optimizadores.
-
----
-
-## 📌 Características Clave
-
-* **Diseño 100% Modular:** Componentes totalmente desacoplados (Modelo, Trainer, Data Pipeline).
-* **Inyección de Dependencias:** El `Trainer` es agnóstico al modelo, optimizador o scheduler que utilices.
-* **Transfer Learning Eficiente:** Configurado como extractor de características utilizando pesos congelados de ResNet18 de forma predeterminada.
-* **Ajuste Dinámico de LR:** Integración nativa con schedulers cíclicos (`CyclicLR`) para evitar estancamientos en mínimos locales.
-* **Evaluación Automatizada:** Monitoreo de pérdidas y precisión por época, restaurando automáticamente los mejores pesos al finalizar el entrenamiento.
+**Machine vision applications are very common in the automotive industry**. They are commonly solved by implementing vision systems and developing rule-based applications (e.g., thresholding, filtering, and contour detection). But what happens when an application has a lot of variations in light or position? These classic tools are not enough; this is why **AI plays such a big role in machine vision.**
 
 ---
 
-## 📁 Estructura del Proyecto
+## 🧠 Convolutional Neural Networks
+CNNs are widely used in computer vision because they automatically extract features and have proven a better performance compared to ML models.
+I wanted to **simplify** and **accelerate** the **process of training a CNN** by developing a **modular architecture** with custom Python modules to train different CNN architectures leveraging **transfer learning**.
+- In order to deploy a CNN model, a machine vision engineer would only need to capture some samples in order to start training a CNN, divide the samples by classes and execute a simple jupyter notebook.
+- In many real-world industrial applications, this pipeline has demonstrated robustness and positive results against industrial environment variations and complex applications.
 
+---
+
+## 🐍 Python Modules
+The project contains 3 main custom libraries to simplify the training process:
+1. `dataset.py`: A custom module made to create and split datasets given an input folder containing images of each class.
+2. `models.py`: This module provides different pre-trained CNN architectures to leverage the model as a **feature extractor**.
+3. `trainer.py`: As part of the modular architecture, this library is in charge of the entire training process, controlling the full workflow and hyperparameter definition (epochs, optimizer, criterion, etc).
+
+---
+
+## 📁 Project Structure
 ```text
-├── data/                  # Datasets de entrenamiento y validación
-│   ├── train/
-│   └── val/
-├── src/                   # Código fuente modular
+├── datasets/              # This folder contains the sample images (train/test) in order to train. Each class must be separated by folders. 
+│   └── my_application/
+│       ├── test_images
+│       └── train_images
+├── outputs/
+│   ├── models
+│   └── plots
+├── src/                   # Source code
 │   ├── __init__.py
-│   ├── models.py          # Definición de arquitecturas de Redes Neuronales
-│   ├── trainer.py         # Orquestador del loop de entrenamiento y validación
-│   └── utils.py           # Funciones de ayuda (guardado, transformaciones, etc.)
-├── outputs/               # Modelos exportados (.pt) y gráficos de métricas
-├── main.py                # Script principal de ejecución (Orquestador)
+│   ├── augmentation.py    # Module to perform image augmentation, given an input images folder.
+│   ├── dataset.py         # Creates and splits datasets into train and validation.
+│   ├── models.py          # Contains different pre-trained CNN architectures (ResNet18).
+│   └── trainer.py         # Performs the full training workflow.
+└── industrial-cnn-classifier.ipynb
 └── README.md
+```
+
+---
+
+## ➡ Next Steps
+- Development of a user-friendly GUI to control the full workflow.
+- Integrate more CNN architectures: ConvNeXt, EfficientNet, DenseNet,etc.
