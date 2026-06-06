@@ -36,7 +36,9 @@ The project contains 3 main custom libraries to simplify the training process:
 │   ├── dataset.py         # Creates and splits datasets into train and validation.
 │   ├── models.py          # Contains different pre-trained CNN architectures (ResNet18).
 │   └── trainer.py         # Performs the full training workflow.
-└── industrial-cnn-classifier.ipynb
+└── housing-classification.ipynb
+└── o-ring-inspection.ipynb
+└── welding-check.ipynb
 └── README.md
 ```
 
